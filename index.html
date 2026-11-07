@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillVault - Learning Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- AUTHENTICATION CARD -->
+    <div id="authContainer" class="auth-card">
+        <div class="brand">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+            </svg>
+            <span>SkillVault</span>
+        </div>
+
+        <!-- Sign In Form -->
+        <div id="loginSection">
+            <h2>Welcome Back</h2>
+            <p class="subtitle">Enter your credentials to access your dashboard</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="developer@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn primary-btn">Sign In</button>
+            </form>
+
+            <p class="toggle-text">
+                Don't have an account? <a href="#" id="showRegister">Create one</a>
+            </p>
+        </div>
+
+        <!-- Register Form -->
+        <div id="registerSection" class="hidden">
+            <h2>Create Account</h2>
+            <p class="subtitle">Start tracking your technical learning journey today</p>
+
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regEmail">Email Address</label>
+                    <input type="email" id="regEmail" placeholder="developer@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Password</label>
+                    <input type="password" id="regPassword" placeholder="Minimum 6 characters" required minlength="6">
+                </div>
+                <button type="submit" class="btn primary-btn">Register</button>
+            </form>
+
+            <p class="toggle-text">
+                Already have an account? <a href="#" id="showLogin">Sign in</a>
+            </p>
+        </div>
+
+        <div id="authMessage" class="message hidden"></div>
+    </div>
+
+    <!-- MAIN DASHBOARD (Protected) -->
+    <div id="dashboardContainer" class="dashboard-card hidden">
+        <header class="dash-header">
+            <div class="brand">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5" />
+                    <path d="M2 12l10 5 10-5" />
+                </svg>
+                <span>SkillVault</span>
+            </div>
+            <div class="user-info">
+                <span id="userEmailDisplay" class="user-email"></span>
+                <button id="logoutBtn" class="btn secondary-btn">Logout</button>
+            </div>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-label">Total Skills Tracked</span>
+                <span id="statSkills" class="stat-value">0</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Total Hours Practiced</span>
+                <span id="statHours" class="stat-value">0</span>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <!-- Add Skill Panel -->
+            <div class="panel">
+                <h3>Add New Tech Skill</h3>
+                <form id="skillForm">
+                    <div class="form-group">
+                        <label for="skillName">Technology / Skill Name</label>
+                        <input type="text" id="skillName" placeholder="e.g. Node.js, Docker, React" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hoursLogged">Hours Spent Learning</label>
+                        <input type="number" id="hoursLogged" min="1" placeholder="e.g. 5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="skillStatus">Current Status</label>
+                        <select id="skillStatus">
+                            <option value="Learning">Learning</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Building Project">Building Project</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn primary-btn">Save to Cloud DB</button>
+                </form>
+            </div>
+
+            <!-- Skills List Panel -->
+            <div class="panel">
+                <h3>Your Skill Entries</h3>
+                <div id="skillsList" class="skills-list">
+                    <!-- Dynamically populated entries -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Supabase SDK CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
